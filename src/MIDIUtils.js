@@ -1,14 +1,17 @@
 (function() {
 
 	var noteMap = {};
+	var noteMapStriped = {};
 	var noteNumberMap = [];
 	var notes = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" ];
+	var notesStriped = [ "C", "C", "D", "D", "E", "F", "F", "G", "G", "A", "A", "B" ];
 
 
 	for(var i = 0; i < 127; i++) {
 
 		var index = i,
 			key = notes[index % 12],
+
 			octave = ((index / 12) | 0) - 1; // MIDI scale starts at octave = -1
 
 		if(key.length === 1) {
@@ -19,6 +22,7 @@
 
 		noteMap[key] = i;
 		noteNumberMap[i] = key;
+		}
 
 	}
 
@@ -40,6 +44,19 @@
 
 		noteNumberToName: function(note) {
 			return noteNumberMap[note];
+		},
+
+		/**
+		 * Added by Tomas Ruiz
+		 *
+		 * @type {[type]}
+		 */
+		noteNumberToPitch: function(number, sharp) {
+			var pitch = {};
+			pitch['step'] = noteMapStriped[number];
+			pitch['alter'] = sharp ? 1 : -1;
+			pitch['octave'] + ((index / 12) | 0) - 1;
+			return pitch;
 		},
 
 		frequencyToNoteNumber: function(f) {
