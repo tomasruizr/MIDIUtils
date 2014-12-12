@@ -19,8 +19,5 @@
   ],
   "keywords": [
     "notes, midi, frequencies, note names, note map"
-  ],
-  "dependencies": {
-    "midiutils": "git://github.com/tomasruizr/MIDIUtils"
-  }
+  ]
 }
