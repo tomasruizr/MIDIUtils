@@ -1,7 +1,7 @@
 (function() {
 
 	var noteMap = {};
-	var noteMapStriped = {};
+	var noteMapStriped = [];
 	var noteNumberMap = [];
 	var notes = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" ];
 	var notesStriped = [ "C", "C", "D", "D", "E", "F", "F", "G", "G", "A", "A", "B" ];
@@ -22,9 +22,9 @@
 
 		noteMap[key] = i;
 		noteNumberMap[i] = key;
-		}
+		noteMapStriped[i] = notesStriped[index % 12];
 
-	};
+	}
 
 
 	function getBaseLog(value, base) {
@@ -54,8 +54,8 @@
 		noteNumberToPitch: function(number, sharp) {
 			var pitch = {};
 			pitch['step'] = noteMapStriped[number];
-			pitch['alter'] = sharp ? 1 : -1;
-			pitch['octave'] + ((index / 12) | 0) - 1;
+			if (sharp !== null) pitch['alter'] = sharp ? 1 : -1;
+			pitch['octave'] = ((number / 12) | 0) - 1;
 			return pitch;
 		},
 
